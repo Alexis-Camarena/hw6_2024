@@ -1,5 +1,4 @@
 const video = document.querySelector("#player1");
-let volume = video.volume;
 
 // Initialize the video element and turn off autoplay and turn off looping.
 window.addEventListener("load", function() {
@@ -52,16 +51,14 @@ document.querySelector("#skip").addEventListener("click", function() {
 
 // Mute/unmute the video and update the text in the button.
 document.querySelector("#mute").addEventListener("click", function() {
-
-	if (video.volume == 0) {
-		video.volume = volume;
-	}
-	else {
-		volume = video.volume;
-		video.volume = 0;
-	}
 	
-	document.querySelector("#volume").innerHTML = video.volume * 100;
+	if (video.muted) {
+        video.muted = false;
+    } else {
+        video.muted = true;
+    }
+	
+	document.querySelector("#volume").innerHTML = video.volume * 100 + "%";
 	document.querySelector("#slider").value = video.volume * 100;
 	console.log("Mute Video");
 });
@@ -70,7 +67,7 @@ document.querySelector("#mute").addEventListener("click", function() {
 // Change the volume based on the slider and update the volume information.
 document.querySelector("#slider").addEventListener("input", function() {
 	let currentVolume = document.querySelector("#slider").value;
-	document.querySelector("#volume").innerHTML = currentVolume;
+	document.querySelector("#volume").innerHTML = currentVolume + '%';
 	video.volume = currentVolume / 100;
 	console.log("Update Volume");
 });
