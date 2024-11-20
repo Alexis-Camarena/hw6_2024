@@ -51,11 +51,13 @@ document.querySelector("#skip").addEventListener("click", function() {
 
 // Mute/unmute the video and update the text in the button.
 document.querySelector("#mute").addEventListener("click", function() {
-	
+
 	if (video.muted) {
         video.muted = false;
+		document.querySelector("#mute").innerHTML = 'Mute'
     } else {
         video.muted = true;
+		document.querySelector("#mute").innerHTML = 'Unmute'
     }
 	
 	document.querySelector("#volume").innerHTML = video.volume * 100 + "%";
